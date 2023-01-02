@@ -1,6 +1,6 @@
 import requests
-import pandas as pd
 import numpy as np
+import pandas as pd
 from db_utils import createCryptoSchema, createCryptoCurrencyTable, insertValuesToCurrencyTable
 from data_utils import checkIfStringIsFloat
 
@@ -84,7 +84,8 @@ def cryptoDataEtl(db, host, port, username, password):
         cryptoDf = pd.DataFrame.from_dict(cryptoJson)
         if checkIfDataIsValid(cryptoDf):
             filterFloatDf = filterDefectiveDataframeData(cryptoDf, floatColumns, boolFilterDefectiveFloatSeries)
-            filterIntDf = filterDefectiveDataframeData(filterFloatDf, intColumns + longIntColumns, boolFilterDefectiveIntSeries)
+            filterIntDf = filterDefectiveDataframeData(filterFloatDf,
+                                                       intColumns + longIntColumns, boolFilterDefectiveIntSeries)
             transformDf = transformTypes(filterIntDf, floatColumns, dateColumns)
 
             # Load

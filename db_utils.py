@@ -1,14 +1,4 @@
 import psycopg2
-from sqlalchemy import create_engine
-
-
-# ENGINE = create_engine("postgresql+psycopg2://{0}:{1}@{2}/{3}".format(
-#     USERNAME,
-#     PASSWORD,
-#     HOST,
-#     DB
-# ))
-
 
 schemaName = "crypto"
 tableName = "currency"
@@ -16,11 +6,10 @@ tableName = "currency"
 
 def connectToDb(db, host, port, username, password):
     conn = psycopg2.connect(database=db,
-                            user=username,
-                            password=password,
                             host=host,
-                            port=port)
-
+                            port=port,
+                            user=username,
+                            password=password)
     return conn
 
 
